@@ -1,0 +1,120 @@
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header bg-success">
+        <h6>Employee List</h6>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <!-- <th>Index</th> -->
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Email id</th>
+                  <th>Contact No</th>
+                  <th>City</th>
+                  <th>Pincode</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of employeeList; track $index) {
+                  <tr>
+                    <!-- <td>{{$index+1}}</td> -->
+                    <td>{{$index+1}}</td>
+                    <td>{{item.empName}}</td>
+                    <td>{{item.empEmail}}</td>
+                    <td>{{item.empContact}}</td>
+                    <td>{{item.empCity}}</td>
+                    <td>{{item.empPincode}}</td>
+                    
+                    <td class="text-center">
+                      <Button type="button" class="btn btn-primary" (click)="onEdit(item)">Edit</Button>
+                      <Button type="button" class="btn btn-danger mx-4" (click)="onDelete(item.empId)">Delete</Button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+            @if (employeeList.length >= 1) {
+              <div class="col-12 text-end">
+                <button type="button" (click)="deleteAllData()" class="btn btn-danger">Delete all records</button>
+              </div>
+            }
+            
+            <tbody>
+              <tr>
+
+              </tr>
+            </tbody>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-header bg-success">
+        New Employee
+      </div>
+      <div class="card-body">
+        <form action="" [formGroup]="employeeForm">
+          <div class="row">
+            <!-- <div class="col-12">
+              <label for="id">ID</label>
+              <input type="text" formControlName="empId" class="form-control rounded border">
+            </div> -->
+            <div class="col-12">
+              <label for="Name">Name</label>
+              <input type="text" formControlName="empName" class="form-control rounded border">
+            </div>
+            <div class="col-6">
+              <label for="Email">Email id</label>
+              <input type="text" formControlName="empEmail" class="form-control rounded border">
+            </div>
+            <div class="col-6">
+              <label for="Contact">Contact No</label>
+              <input type="text" formControlName="empContact" class="form-control rounded border">
+            </div>
+            <div class="col-6">
+              <label for="city">City</label>
+              <input type="text" formControlName="empCity" class="form-control rounded border">
+            </div>
+            <div class="col-6">
+              <label for="State">State</label>
+              <input type="text" formControlName="empState" class="form-control rounded border">
+            </div>
+            <div class="col-6">
+              <label for="Pin">Pin Code</label>
+              <input type="text" formControlName="empPincode" class="form-control rounded border">
+            </div>
+            <div class="col-12">
+              <label for="Address">Address</label>
+              <textarea name="" formControlName="empAddress" class="form-control border" id=""></textarea>
+            </div>
+          </div>
+          <div class="row pt-2">
+            <div class="col-6 text-center">
+              <button type="button"(click)="onReset()" class="btn btn-secondary">
+                Reset
+              </button>
+            </div>
+            <div class="col-6 text-center">
+              @if (employeeForm.controls['empId'].value == "1") {
+                <button type="button" (click)="onSave()" class="btn btn-success">Save Employee</button>
+              }
+              @else{
+                <button type="button" (click)="onUpdate()" class="btn btn-warning">Update Employee</button>
+              }
+              
+              
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
